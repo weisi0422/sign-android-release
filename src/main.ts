@@ -3,6 +3,8 @@ import {signAabFile, signApkFile} from "./signing";
 import path from "path";
 import fs from "fs";
 import * as io from "./io-utils";
+import { Console } from 'console';
+import { decode } from 'punycode';
 
 async function run() {
   try {
@@ -24,7 +26,10 @@ async function run() {
     if (releaseFiles !== undefined && releaseFiles.length !== 0) {
       // 3. Now that we have a release files, decode and save the signing key
       const signingKey = path.join(releaseDir, 'signingKey.jks');
-      fs.writeFileSync(signingKey, signingKeyBase64, 'base64');
+      var decodedString = atob(signingKeyBase64);
+      core.debug(`Debug decodedString: ${decodedString}`);
+      fs.writeFileSync(signingKey, decodedString);
+      // fs.writeFileSync(signingKey, signingKeyBase64, 'base64');
 
       // 4. Now zipalign and sign each one of the the release files
       let signedReleaseFiles:string[] = [];
