@@ -10,9 +10,6 @@ inputs:
     required: true
   signingKeyBase64:
     description: 'The key used to sign your release in base64 encoded format'
-    required: true
-  alias:
-    description: 'The key alias'
     required: false
   keyStorePassword:
     description: 'The password to the keystore'
@@ -22,6 +19,7 @@ inputs:
     required: true
   keyPassword:
     description: 'The password for the key'
+    required: true
   releaseAlias:
     description: 'The key releaseAlias'
     required: true
